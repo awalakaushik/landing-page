@@ -1,4 +1,7 @@
-# Project Summary
+# Udacity Landing-Page Project
+
+
+## Project Summary
 The project aims to give the real-world scenarios of manipulating the DOM. The functionality is being used serves two purposes: to prepare for appending dynamically added data to the DOM, and to show how javascript can improve the usability of an otherwise static site. This project barely touches the surface of what is possible, but it does use some incredibly common events, methods, and logic.
 
 ## Building the Application
