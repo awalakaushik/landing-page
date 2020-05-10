@@ -49,7 +49,7 @@ function scrollAndMakeActive(event) {
     // scroll into view
     const newSectionId = event.target.getAttribute('data-section-id');
     const newSection = document.getElementById(newSectionId);
-    newSection.scrollIntoView(true);
+    newSection.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
     // add active class to this new section
     addActiveClass(newSection);
