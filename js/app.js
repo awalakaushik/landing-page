@@ -49,7 +49,7 @@ function scrollAndMakeActive(event) {
     // scroll into view
     const newSectionId = event.target.getAttribute('data-section-id');
     const newSection = document.getElementById(newSectionId);
-    newSection.scrollIntoView(false);
+    newSection.scrollIntoView(true);
 
     // add active class to this new section
     addActiveClass(newSection);
@@ -107,4 +107,3 @@ buildNavBar(navbarListNames);
 
 // Add class 'active' to section when near top of viewport
 window.addEventListener('scroll', scrollEventListener);
-
