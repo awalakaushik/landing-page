@@ -37,11 +37,27 @@ function getNavbarListItems(sections) {
     });
 }
 
+function scrollAndMakeActive(event) {
+    
+    // remove active class on the current active section
+    document.querySelector(".active-section").classList.remove("active-section");    
+    
+    const newActiveSectionId = event.target.getAttribute('data-section-id').toLowerCase();
+    // scroll into view
+    const newActiveSection = document.getElementById(newActiveSectionId);
+    newActiveSection.scrollIntoView(false);
+
+    // add active class to the new section
+    newActiveSection.className = 'active-section';
+}
+
 function buildNavBar(navbarListNames) {
     navbarListNames.forEach(name => {
         const listItem = document.createElement('li');
         listItem.innerText = name;
         listItem.className = 'menu__link';
+        listItem.setAttribute('data-section-id', name.replace(/\s/g, ''));
+        listItem.addEventListener('click', scrollAndMakeActive);
         docFragment.appendChild(listItem);
     });
     navbar.appendChild(docFragment);
