@@ -11,3 +11,17 @@ To improve the user experience, the section actively being viewed is differentia
 
 ## Learning Scope
 The landing page presents the first opportunity to fully combine the skills in HTML, CSS, and JavaScript into a large project. Aside from solidifying the skills with these three technologies, we’ll discover how best to combine them in a complex application.
+
+## Instructions
+
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Open `index.html` to view the landing page with navigation links built dynamically with scroll and click events.
+
+## Technologies
+
+This project demonstrates the understanding of advanced JavaScript, HTML and CSS - Working with DOM, dynamically generating sections of HTML using JS.
+
+## Credits
+- Thanks to Udacity for making sure one applies the knowledge gained from the lessons
+- Thanks to Chris Ferdinandi, https://gomakethings.com for providing a helper function `isInViewport(element)` to determine if an element is in Viewport.
