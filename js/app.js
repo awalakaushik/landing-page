@@ -37,22 +37,26 @@ function getNavbarListItems(sections) {
     });
 }
 
-function addActiveClass(newElement) {
+function addActiveClass(newElement, className) {
     // remove active class on the current active section
-    document.querySelector(".active-section").classList.remove("active-section");
+    const previousActiveElement = document.querySelector(`.${className}`);
+    previousActiveElement.classList.remove(`${className}`);
 
     // add active class to the new section
-    newElement.className = 'active-section';
+    newElement.classList.add(className);
 }
 
 function scrollAndMakeActive(event) {
     // scroll into view
     const newSectionId = event.target.getAttribute('data-section-id');
     const newSection = document.getElementById(newSectionId);
-    newSection.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    newSection.scrollIntoView({behavior: "smooth"}); // This generates a scroll event and the active class is set inside the eventListener.
 
-    // add active class to this new section
-    addActiveClass(newSection);
+    const newListItemId = `link${newSectionId.substring(7,8)}`;
+    const newListItem = document.getElementById(newListItemId);
+
+    // add active class to the link item
+    addActiveClass(newListItem, 'active-link');
 
 }
 
@@ -63,17 +67,25 @@ function scrollEventListener(event) {
             return;
         }
         else {
-            addActiveClass(section);
+            // add active class for section
+            addActiveClass(section, 'active-section');
+            
+            const newListItemId = `link${section.id.substring(7,8)}`;
+            const newListItem = document.getElementById(newListItemId);
+
+            // add active class for list item
+            addActiveClass(newListItem, 'active-link');
         }
     })
 }
 
 function buildNavBar(navbarListNames) {
-    navbarListNames.forEach(name => {
+    navbarListNames.forEach( (name, index) => {
         const listItem = document.createElement('li');
         listItem.innerText = name;
-        listItem.className = 'menu__link';
+        listItem.className = (index === 0) ? 'menu__link active-link' : 'menu__link';
         listItem.setAttribute('data-section-id', name.replace(/\s/g, '').toLowerCase());
+        listItem.id = `link${index+1}`;
         listItem.addEventListener('click', scrollAndMakeActive);
         docFragment.appendChild(listItem);
     });
@@ -104,6 +116,8 @@ function isInViewport (elem) {
 
 // build the nav
 buildNavBar(navbarListNames);
+
+
 
 // Add class 'active' to section when near top of viewport
 window.addEventListener('scroll', scrollEventListener);
